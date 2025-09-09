@@ -1,0 +1,10 @@
+name: Deploy the backend
+on:
+  push:
+    branches: [ main ]
+    jobs:
+      build:
+        runs-on: unbuntu-latest
+        steps:
+          -- name: Checkout the code
+             uses: actions/

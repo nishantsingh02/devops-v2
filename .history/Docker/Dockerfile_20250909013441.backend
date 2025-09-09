@@ -1,0 +1,21 @@
+FROM node:20-alpine
+
+RUN npm install bun -g 
+
+WORKDIR /src
+
+COPY ./package.josn ./package.josn
+
+RUN bun install
+
+COPY ./package-lock.json ./package-lock.json
+
+RUN bunx prisma generate
+RUN bun run build
+
+EXPOSE 8080
+
+CMD ["bun", "run", "dev"]
+
+
+

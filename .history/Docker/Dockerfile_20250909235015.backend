@@ -1,0 +1,24 @@
+# Use Bun official image
+FROM oven/bun:1
+
+# Set working directory inside container
+WORKDIR /usr/src/app
+
+# Copy only package files for caching dependencies
+COPY package.json bun.lockb turbo.json ./
+
+# Install dependencies inside container
+# Bun will automatically resolve workspace packages like db
+RUN bun install --frozen-lockfile
+
+# Copy the rest of the source code
+COPY . .
+
+# Generate Prisma client
+RUN bun run db:generate
+
+# Expose backend port
+EXPOSE 8080
+
+# Start the backend
+CMD ["bun", "run", "start:backend"]

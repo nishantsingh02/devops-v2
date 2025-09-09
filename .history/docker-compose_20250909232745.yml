@@ -1,0 +1,5 @@
+name: Deploy the backend
+on:
+  push:
+    branches: [ main ]
+    

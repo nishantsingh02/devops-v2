@@ -1,0 +1,22 @@
+FROM over/bun:1
+
+WORKDIR /usr/src/app
+
+COPY ./package.josn ./package.josn
+COPY ./bun.lock ./bun.lock
+
+COPY
+
+RUN bun install
+
+COPY ./package-lock.json ./package-lock.json
+
+RUN bunx prisma generate
+RUN bun run build
+
+EXPOSE 8080
+
+CMD ["bun", "run", "dev"]
+
+
+
