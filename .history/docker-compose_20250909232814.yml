@@ -1,7 +1,0 @@
-name: Deploy the backend
-on:
-  push:
-    branches: [ main ]
-    jobs:
-      build:
-        runs-on
